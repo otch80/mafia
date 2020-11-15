@@ -1,0 +1,73 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id "com.moowork.node" version "1.3.1"
+	id 'java'
+}
+
+group = 'my.challenge'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.mariadb.jdbc:mariadb-java-client:2.1.2'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-test'
+
+	// 채팅시 xss 방지
+	implementation 'com.navercorp.lucy:lucy-xss-servlet:2.0.0'
+	// 소켓
+	implementation 'org.webjars:stomp-websocket:2.3.3'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'org.webjars:sockjs-client:1.1.2'
+
+	// 롬복
+	implementation 'org.projectlombok:lombok'
+
+	compile 'io.jsonwebtoken:jjwt-api:0.11.2'
+	runtime 'io.jsonwebtoken:jjwt-impl:0.11.2',
+			'io.jsonwebtoken:jjwt-jackson:0.11.2' // or 'io.jsonwebtoken:jjwt-gson:0.11.2' for gson
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+/*node {
+	version = '12.14.0'
+	npmVersion = '6.14.8'
+	workDir = file("./frontend")
+	npmWorkDir = file("./frontend")
+	nodeModulesDir = file("./frontend")
+}*/
+
+/*task buildFrontEnd(type: NpmTask) {
+	description = "Build vue.js"
+	args = ['run','build']
+}*/
+
+//task npmBuild(type: NpmTask) {
+//	args = ['run', 'build']
+//}
+
+
+//task npmClean(type: Delete) {
+//	delete 'dist'
+//}
+
+//npmBuild.dependsOn(npmInstall)
+/*
+
+processResources.dependsOn 'buildFrontEnd'
+*/
+
+test {
+	useJUnitPlatform()
+}
