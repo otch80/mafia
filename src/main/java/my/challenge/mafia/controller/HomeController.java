@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class HomeController {
 
     //메인 화면
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home() {
         return "/home/home";
     }

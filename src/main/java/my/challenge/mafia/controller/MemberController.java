@@ -46,12 +46,6 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    // 회원 가입 페이지
-    @GetMapping("/signup")
-    public String signupForm(){
-        return "/members/signup";
-    }
-
     // 잘못된 접속을 할 경우에 나오는 페이지
     @GetMapping("/wrong")
     public String wrong() {
@@ -68,6 +62,12 @@ public class MemberController {
     @GetMapping("/test")
     public String test(){
         return "/home/test";
+    }
+
+    // 회원 가입 페이지
+    @GetMapping("/signup")
+    public String signupForm(){
+        return "/members/signup";
     }
 
     // 회원 가입 수행

@@ -1,15 +1,21 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<script></script>
+
 <body>
-<div class="container">
+<div>
     <form action="/signup" method="post">
-        <div class="form-group">
-            <label for="name">이름</label>
-            <input type="text" id="name" name="id" placeholder="이름을 입력하세요">
-            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
-        </div>
-        <button type="submit">등록</button>
+        <fieldset> <legend>회원가입</legend>
+            <div>
+                ID &nbsp;&nbsp;: <input type="text" id="signupid" name="signupid" placeholder="ID" autofocus required><br>
+                PW : <input type="password" id="signuppw" name="signuppw" placeholder="Password" required/><p>
+            </div>
+            <div>
+                <button id="signup_submit">제출</button>
+                <a href="/signin.html">나가기</a>
+            </div>
+        </fieldset>
     </form>
-</div> <!-- /container -->
+</div>
 </body>
 </html>
