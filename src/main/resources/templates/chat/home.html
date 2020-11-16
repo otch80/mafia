@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+
+        function checkid() {
+            if ($('#id').val().length == 0) {
+                alert('ID를 입력하세요');
+                $('#id').focus();
+            }
+            else {
+                $("form").submit();
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div class="container">
+    <div>
+        <h1>마피아 채팅방</h1>
+        <form action="/chat/room" method="post" id="value">
+            <label> ID </label>
+            <input type="text" placeholder="사용할 ID를 입력하세요" name="id" id="id" autofocus />
+            <div style="margin-top:10px;">
+                <!-- button 자체는 submit 속성을 가지고 있기 때문에 form 태그 안에선 type을 정의해야 submit 오작동을 방지한다 -->
+                <button type="button" onclick="checkid()"> 방만들기 </button>
+                <button type="button" onclick="checkid()"> 참가하기 </button>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+</body>
+</html>

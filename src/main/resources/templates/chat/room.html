@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+        var socket;
+       $(document).ready( function() {
+            var sock = new SockJS("/chat"); // endpoint
+            var client = Stomp.over(sock);
+
+            socket = client;
+            isStomp = true;
+
+            client.connect({}, function () {
+                // 해당 토픽 구독
+                client.subscribe('/topic/'+ /*[[${message.getId()}]]*/, function (event) {
+                    // JSON parse는 return 되는 값이 2중 구조로 되어 있고 parsing하면 String으로 바뀌기 때문에 바뀐 String을 JSON 형태로 변경하기 위함
+                    $("textarea#server_value").append("\n"+JSON.parse(event.body).id+" >> "+JSON.parse(event.body).msg);
+                    // 채팅창 업데이트
+                    $("#server_value").scrollTop($("#server_value").prop('scrollHeight'));
+                });
+            });
+            let msg = $('#msg').val();
+            $("textarea#server_value").text("깨끗한 채팅 문화를 위해 매너있는 채팅 부탁드립니다");
+        });
+
+        var socket = null;
+        var isStomp = false;
+
+        function sendmsg() {
+            // 소켓 연결 중 채팅입력시 처리
+            if (!socket.connected) {
+                $('#msg').val('');
+                $("textarea#server_value").append("\n채팅 서버에 접속중입니다");
+                return;
+            }
+
+            socket.send("/room/"+/*[[${message.getId()}]]*/, {}, JSON.stringify({roomid: /*[[${message.getId()}]]*/, id: 'username', msg:  $('#msg').val()} ));
+
+            // 채팅창 업데이트
+            $("#server_value").scrollTop($("#server_value").prop('scrollHeight'));
+
+            // 전송창 초기화
+            $('#msg').val('');
+            $('#msg').focus();
+         }
+
+
+        function enter() {
+			if (event.keyCode == 13){
+				if (!event.shiftKey) sendmsg();
+			}
+		}
+
+		function chat_clear() {
+		    $("#server_value").text("초기화 되었습니다");
+		}
+
+		function exit() {
+		    if(confirm("방을 나가시겠습니까?")){
+		        socket.disconnect();
+		        $("#server_value").append("\n채팅이 종료되었습니다");
+		    }
+		}
+
+    /*]]>*/
+
+    </script>
+    <style>
+        .Send {
+            display: flex;
+        }
+
+        #server_value {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div>
+        <h1>welcome mafia world</h1>
+        <h1 th:text="${message.getId()}+' 방에 입장하셨습니다 '"> 정상연결 실패 </h1>
+        <div class="Send">
+            <input type="text" id="msg" onKeypress="enter()" autofocus/>
+            <button id="btnSend" onclick="sendmsg()"> Send </button>
+        </div>
+        <div>
+            <button onclick="chat_clear()"> 채팅창 초기화 </button>
+            <button onclick="exit()"> 방나가기 </button>
+        </div>
+        <div style="margin-top:10px; height:200px;" >
+            <textarea id="server_value" style="resize:none;" readonly></textarea>
+        </div>
+    </div>
+</div> <!-- /container -->
