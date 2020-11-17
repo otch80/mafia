@@ -19,6 +19,8 @@ public class ChattingController {
     @MessageMapping("/room/{id}")
 	@SendTo("/topic/1")
     public Message game_room(Message message) throws Exception {
+        System.out.println(message);
+        System.out.println("여기요~");
         return message;
     }
 

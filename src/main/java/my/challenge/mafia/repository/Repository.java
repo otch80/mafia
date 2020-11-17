@@ -11,6 +11,4 @@ public interface Repository {
     Optional<Member> findById(String id);
     Optional<Member> findOneByIdAndPw(Member member);
     List<Member> findAll();
-
-
 }

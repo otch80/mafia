@@ -73,18 +73,19 @@ public class MemberController {
     // 회원 가입 수행
     @PostMapping("/signup")
     public String signup(@RequestParam("id") String id, @RequestParam("password") String password){
-    //public String signup(@RequestBody Member user) {
         Member member = new Member();
         member.setId(id);
         member.setPassword(passwordEncoder.encode(password));
+        System.out.println("여기까지 완료");
         memberService.join(member);
-        return "/members/login";
+        System.out.println("여기까지 완료2");
+        return "/home/home";
     }
 
 
 
     // 로그인 수행
-    @PostMapping("/home")
+    @PostMapping("/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletResponse response) throws Exception {
     //public String login(@RequestParam LoginUser loginUser, HttpServletResponse response) throws Exception {
 
@@ -122,10 +123,10 @@ public class MemberController {
 
             //response.sendRedirect("/home");
             //return new ResponseEntity(new LoginToken("Bearer" + token), HttpStatus.OK);
-            return "/home/home";
+            return "/home/ready";
         } catch (NullPointerException e) {
             //return new ResponseEntity<String>("fail login", HttpStatus.NOT_FOUND);
-            return "/home/wrongAccess";
+            return "/home/home";
         }
     }
 

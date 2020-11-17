@@ -15,9 +15,10 @@ public class HomeController {
         return "/home/home";
     }
 
-    @PostMapping("/ready")
+    // 임시추가
+    @GetMapping("/ready")
     public String ready() {
-        return "/admin/index";
+        return "/home/ready";
     }
 
 }

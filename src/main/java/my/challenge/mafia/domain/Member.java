@@ -3,8 +3,6 @@ package my.challenge.mafia.domain;
 public class Member {
     private String id;
     private String password;
-    //private String refresh;
-
 
     public Member(){
         this.id = null;
@@ -32,11 +30,4 @@ public class Member {
         this.password = password;
     }
 
-//    public String getRefresh() {
-//        return refresh;
-//    }
-//
-//    public void setRefresh(String refresh) {
-//        this.refresh = refresh;
-//    }
 }

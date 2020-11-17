@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,19 +42,19 @@ public class GameController {
 
     // 방 입장
     @PostMapping("/enter") // URL 혹은 특정한 방법으로 방번호를 전달한다. ################ 차후 수정 필요
-    public ResponseEntity enterRoom(@RequestBody RoomInfo roomInfo, HttpServletRequest request, HttpServletResponse response){
-        int roomNumber = Integer.parseInt(roomInfo.getRoom_number()); // 프론트에서 전달 받음
-
-        // 프론트에서 토큰 정보를 안직 받지 못한 차후 수정 필요 ###############################################################
+    public ResponseEntity enterRoom(@RequestParam("num") int roomNumber, HttpServletRequest request, HttpServletResponse response){
+        // 프론트에서 토큰 정보를 안직 받지 못한 차후 수정 필요 
         //String token = request.getCookies()[0].getValue().substring(6);
 
-        User user = new User("asdf"); // 유저 이름을 가져와서 User객체를 생성한다. 임시로 asdf로 설정한다############################################################
+        User user = new User("asdf"); // 유저 이름을 가져와서 User객체를 생성한다. 임시로 asdf로 설정한다
 
         // 방 입장 성공
         if(roomManager.enterRoom(roomNumber, user)){
+            System.out.println("방입장 성공");
             return new ResponseEntity("enter success", HttpStatus.OK);
         }// 방 입장 실패
         else{
+            System.out.println("방입장 실패");
             // 방 입장에 실패하였습니다~~~ 라는 알림문을 띄울 수 있음
             return new ResponseEntity("enterFail", HttpStatus.BAD_REQUEST);
         }
