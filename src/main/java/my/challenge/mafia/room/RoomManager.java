@@ -64,16 +64,19 @@ public class RoomManager {
     public boolean enterRoom(int roomNumber, User user){
         // roomNumber == 0이면 랜덤 입장, 아니면 해당 roomNumber로 입장
         if(roomNumber != 0){
+            // 들어갈 수 있는 방이 없으면 방 생성 - 방 번호는 현재 생성 가능한 방 번호 중 가장 작은 수로 설정
+            if (roomList.get(Integer.toString(roomNumber)) == null) {
+                makeRoom(getRoomNumber(), user);
+            }
             return roomList.get(Integer.toString(roomNumber)).enterUser(user); // 유저의 방 입장
-        }else{
+        } else {
             Iterator<String> keys = roomList.keySet().iterator();
             while( keys.hasNext() ){
                 String key = keys.next();
-                if(roomList.get(key).getUserAmount() < 9){ // 들어 갈 수 있는 방이 있으면 입장
+                if(roomList.get(key).getUserAmount() < 100){ // 들어 갈 수 있는 방이 있으면 입장
                     return roomList.get(key).enterUser(user);
                 }
             }
-            // 들어갈 수 있는 방이 없으면 방 생성 - 방 번호는 현재 생성 가능한 방 번호 중 가장 작은 수로 설정
             return makeRoom(getRoomNumber(), user);
         }
     }
