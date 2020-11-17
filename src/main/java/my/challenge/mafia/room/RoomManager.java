@@ -21,7 +21,7 @@ public class RoomManager {
     public RoomManager(){
         roomList = new HashMap<String, GameRoom>();
         this.restRoomList = new PriorityQueue<>();
-        for(int i = 1; i < 1000; i++){
+        for(int i = 1; i < 100; i++){
             this.restRoomList.add(i);
         }
     }
@@ -42,7 +42,7 @@ public class RoomManager {
     public boolean makeRoom(int roomNumber, User user){
         try {
             // 방번호 최대 값이 1000이다. 이를 넘을 경우 방 생성 실패
-            if(roomNumber > 1000)
+            if(roomNumber > 100)
                 throw new Exception();
             roomList.put(Integer.toString(roomNumber), new GameRoom(user));
             return true;
@@ -66,7 +66,7 @@ public class RoomManager {
         if(roomNumber != 0){
             // 들어갈 수 있는 방이 없으면 방 생성 - 방 번호는 현재 생성 가능한 방 번호 중 가장 작은 수로 설정
             if (roomList.get(Integer.toString(roomNumber)) == null) {
-                makeRoom(getRoomNumber(), user);
+                makeRoom(roomNumber, user);
             }
             return roomList.get(Integer.toString(roomNumber)).enterUser(user); // 유저의 방 입장
         } else {
