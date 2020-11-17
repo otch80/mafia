@@ -50,11 +50,9 @@ public class GameController {
 
         // 방 입장 성공
         if(roomManager.enterRoom(roomNumber, user)){
-            System.out.println("방입장 성공");
             return new ResponseEntity("enter success", HttpStatus.OK);
         }// 방 입장 실패
         else{
-            System.out.println("방입장 실패");
             // 방 입장에 실패하였습니다~~~ 라는 알림문을 띄울 수 있음
             return new ResponseEntity("enterFail", HttpStatus.BAD_REQUEST);
         }
