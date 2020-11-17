@@ -76,6 +76,7 @@ public class RoomManager {
                 if(roomList.get(key).getUserAmount() < 100){ // 들어 갈 수 있는 방이 있으면 입장
                     return roomList.get(key).enterUser(user);
                 }
+
             }
             return makeRoom(getRoomNumber(), user);
         }
