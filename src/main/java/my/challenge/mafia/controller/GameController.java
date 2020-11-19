@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,7 +44,7 @@ public class GameController {
 
     // 방 입장
     @PostMapping("/enter") // URL 혹은 특정한 방법으로 방번호를 전달한다. ################ 차후 수정 필요
-    public ResponseEntity enterRoom(@RequestParam("num") int roomNumber, HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView enterRoom(ModelAndView model, @RequestParam("num") int roomNumber, HttpServletRequest request, HttpServletResponse response){
         // 프론트에서 토큰 정보를 안직 받지 못한 차후 수정 필요 
         //String token = request.getCookies()[0].getValue().substring(6);
 
@@ -50,11 +52,13 @@ public class GameController {
 
         // 방 입장 성공
         if(roomManager.enterRoom(roomNumber, user)){
-            return new ResponseEntity("enter success", HttpStatus.OK);
+            model.setViewName("/game/day");
+            return model;
         }// 방 입장 실패
         else{
             // 방 입장에 실패하였습니다~~~ 라는 알림문을 띄울 수 있음
-            return new ResponseEntity("enterFail", HttpStatus.BAD_REQUEST);
+            model.setViewName("/home/ready");
+            return model;
         }
     }
 
