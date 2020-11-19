@@ -10,12 +10,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+=======
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
 
 
 @Controller
@@ -28,12 +43,18 @@ public class GameController {
     @Autowired
     private RoomManager roomManager;
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
     /*
      ####################### 수정 중 ################################
 
 
     */
 
+<<<<<<< HEAD
 
     // 방 입장
     @PostMapping("/enter") // URL 혹은 특정한 방법으로 방번호를 전달한다. ################ 차후 수정 필요
@@ -52,6 +73,44 @@ public class GameController {
         else{
             // 방 입장에 실패하였습니다~~~ 라는 알림문을 띄울 수 있음
             return new ResponseEntity("enterFail", HttpStatus.BAD_REQUEST);
+=======
+    @GetMapping("/game")
+    public String home() {
+        return "/game/day";
+    }
+
+    // 방 입장
+    @PostMapping("/enter") // URL 혹은 특정한 방법으로 방번호를 전달한다. ################ 차후 수정 필요
+    public ModelAndView enterRoom(ModelAndView model, @RequestParam("num") int roomNumber, HttpServletRequest request, HttpServletResponse response){
+        // 프론트에서 토큰 정보를 안직 받지 못한 차후 수정 필요
+        String token = new String();
+         for(int i = 0; i < request.getCookies().length; i++){
+             if(request.getCookies()[i].getName().equals("JW-TOKEN")){
+                 token = request.getCookies()[i].getValue().substring(6);
+             }
+         }
+         String username = jwtTokenUtil.getUsernameFromToken(token);
+
+        User user = new User(username); // 유저 이름을 가져와서 User객체를 생성한다. 임시로 asdf로 설정한다
+
+
+
+        // 방 입장 성공
+        if(roomManager.enterRoom(roomNumber, user)){
+            List<String> userlist = roomManager.getUserList(roomNumber); // 현재 접속중인 유저 리스트
+
+            model.setViewName("/game/day");
+            model.addObject("roomNumber",roomNumber);
+            model.addObject("username",username);
+            model.addObject("userlist",userlist);
+
+            return model;
+        }// 방 입장 실패
+        else{
+            // 방 입장에 실패하였습니다~~~ 라는 알림문을 띄울 수 있음
+            model.setViewName("/home/ready");
+            return model;
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
         }
     }
 

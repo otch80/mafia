@@ -1,6 +1,9 @@
 package my.challenge.mafia.controller;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
 import my.challenge.mafia.domain.LoginToken;
 import my.challenge.mafia.domain.Member;
 import my.challenge.mafia.domain.LoginUser;
@@ -39,7 +42,10 @@ public class MemberController {
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -48,6 +54,7 @@ public class MemberController {
         this.memberService = memberService;
     }
 
+<<<<<<< HEAD
 
 
 
@@ -59,6 +66,8 @@ public class MemberController {
 
 
 
+=======
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
     // 잘못된 접속을 할 경우에 나오는 페이지
     @GetMapping("/wrong")
     public String wrong() {
@@ -77,6 +86,7 @@ public class MemberController {
         return "/home/test";
     }
 
+<<<<<<< HEAD
     // 초기 로그인 화면
     @GetMapping("/")
     public String login(){
@@ -94,12 +104,34 @@ public class MemberController {
         member.setPassword(passwordEncoder.encode(password));
         memberService.join(member);
         return "/members/login";
+=======
+    // 회원 가입 페이지
+    @GetMapping("/signup")
+    public String signupForm(){
+        return "/members/signup";
+    }
+
+    // 회원 가입 수행
+    @PostMapping("/signup")
+    public String signup(@RequestParam("id") String id, @RequestParam("password") String password){
+        Member member = new Member();
+        member.setId(id);
+        member.setPassword(passwordEncoder.encode(password));
+        System.out.println("여기까지 완료");
+        memberService.join(member);
+        System.out.println("여기까지 완료2");
+        return "/home/home";
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
     }
 
 
 
     // 로그인 수행
+<<<<<<< HEAD
     @PostMapping("/home")
+=======
+    @PostMapping("/login")
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletResponse response) throws Exception {
     //public String login(@RequestParam LoginUser loginUser, HttpServletResponse response) throws Exception {
 
@@ -137,10 +169,17 @@ public class MemberController {
 
             //response.sendRedirect("/home");
             //return new ResponseEntity(new LoginToken("Bearer" + token), HttpStatus.OK);
+<<<<<<< HEAD
             return "/home/home";
         } catch (NullPointerException e) {
             //return new ResponseEntity<String>("fail login", HttpStatus.NOT_FOUND);
             return "/home/wrongAccess";
+=======
+            return "/home/ready";
+        } catch (NullPointerException e) {
+            //return new ResponseEntity<String>("fail login", HttpStatus.NOT_FOUND);
+            return "/home/home";
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
         }
     }
 

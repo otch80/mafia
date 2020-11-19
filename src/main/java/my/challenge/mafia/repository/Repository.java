@@ -11,6 +11,9 @@ public interface Repository {
     Optional<Member> findById(String id);
     Optional<Member> findOneByIdAndPw(Member member);
     List<Member> findAll();
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
 }

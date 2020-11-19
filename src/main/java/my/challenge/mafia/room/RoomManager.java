@@ -3,6 +3,10 @@ package my.challenge.mafia.room;
 
 import org.springframework.stereotype.Component;
 
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.PriorityQueue;
@@ -10,7 +14,10 @@ import java.util.PriorityQueue;
 
 /*
     방은 숫자로 구분한다.
+<<<<<<< HEAD
     점심 나가서 먹을 거 같애~~~
+=======
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
  */
 
 @Component
@@ -21,7 +28,11 @@ public class RoomManager {
     public RoomManager(){
         roomList = new HashMap<String, GameRoom>();
         this.restRoomList = new PriorityQueue<>();
+<<<<<<< HEAD
         for(int i = 1; i < 1000; i++){
+=======
+        for(int i = 1; i < 100; i++){
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
             this.restRoomList.add(i);
         }
     }
@@ -38,11 +49,23 @@ public class RoomManager {
         this.restRoomList.add(number);
     }
 
+<<<<<<< HEAD
+=======
+    // 특정 방 번호의 유저리스트 가져오기
+    public ArrayList<String> getUserList(int roomNumber){
+        return roomList.get(Integer.toString(roomNumber)).getUserList();
+    }
+
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
     // 방 생성
     public boolean makeRoom(int roomNumber, User user){
         try {
             // 방번호 최대 값이 1000이다. 이를 넘을 경우 방 생성 실패
+<<<<<<< HEAD
             if(roomNumber > 1000)
+=======
+            if(roomNumber > 100)
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
                 throw new Exception();
             roomList.put(Integer.toString(roomNumber), new GameRoom(user));
             return true;
@@ -64,6 +87,7 @@ public class RoomManager {
     public boolean enterRoom(int roomNumber, User user){
         // roomNumber == 0이면 랜덤 입장, 아니면 해당 roomNumber로 입장
         if(roomNumber != 0){
+<<<<<<< HEAD
             return roomList.get(Integer.toString(roomNumber)).enterUser(user); // 유저의 방 입장
         }else{
             Iterator<String> keys = roomList.keySet().iterator();
@@ -74,6 +98,22 @@ public class RoomManager {
                 }
             }
             // 들어갈 수 있는 방이 없으면 방 생성 - 방 번호는 현재 생성 가능한 방 번호 중 가장 작은 수로 설정
+=======
+            // 들어갈 수 있는 방이 없으면 방 생성 - 방 번호는 현재 생성 가능한 방 번호 중 가장 작은 수로 설정
+            if (roomList.get(Integer.toString(roomNumber)) == null) {
+                makeRoom(roomNumber, user);
+            }
+            return roomList.get(Integer.toString(roomNumber)).enterUser(user); // 유저의 방 입장
+        } else {
+            Iterator<String> keys = roomList.keySet().iterator();
+            while( keys.hasNext() ){
+                String key = keys.next();
+                if(roomList.get(key).getUserAmount() < 100){ // 들어 갈 수 있는 방이 있으면 입장
+                    return roomList.get(key).enterUser(user);
+                }
+
+            }
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
             return makeRoom(getRoomNumber(), user);
         }
     }
