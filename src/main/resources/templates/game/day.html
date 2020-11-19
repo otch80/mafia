@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 
 <head>
     <meta charset="utf-8">
@@ -11,9 +11,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
     <script th:inline="javascript">
         /*<![CDATA[*/
+
         var socket;
+        var username = /*[[${username}]]*/;
+
         $(document).ready(function () {
             var sock = new SockJS("/chat"); // endpoint
             var client = Stomp.over(sock);
@@ -23,8 +27,8 @@
 
             client.connect({}, function () {
                 // 해당 토픽 구독
-                client.subscribe('/topic/1', function (event) {
-                    console.log(JSON.parse(event.body));
+                client.subscribe('/topic/'+/*[[${roomNumber}]]*/, function (event) {
+                    console.log("hello");
                     $(".chat_box").append("\n" + JSON.parse(event.body).id + " >> " + JSON.parse(event.body).msg);
                     $(".chat_box").scrollTop($(".chat_box").prop('scrollHeight'));
                 });
@@ -32,14 +36,18 @@
         });
 
         function sendmsg() {
-            var chatting = {'msg':$(".chatsub").val()};
 
             if (!socket.connected) {
                 $(".chatsub").val('');
                 $(".chat_box").append("\n채팅 서버에 접속중입니다 잠시만 기다려주세요");
                 $(".chatsub").focus();
             } else {
-                socket.send("/room/1", chatting);
+                socket.send("/room/"+/*[[${roomNumber}]]*/,{},
+                    JSON.stringify({
+                        'msg': $(".chatsub").val(),
+                        'id' : /*[[${username}]]*/,
+                        'roomid' : /*[[${roomNumber}]]*/}
+                        ));
                 $(".chatsub").val('');
                 $(".chatsub").focus();
             }

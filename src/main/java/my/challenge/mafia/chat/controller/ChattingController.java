@@ -17,10 +17,8 @@ public class ChattingController {
     // 각자 채팅방으로 전송
     // 각 방 ID 별로 /room으로 전송되는 채팅 처리
     @MessageMapping("/room/{id}")
-	@SendTo("/topic/1")
-    public Message game_room(Message message) throws Exception {
-        System.out.println(message);
-        System.out.println("여기요~");
+	@SendTo("/topic/{id}")
+    public Message room(Message message) throws Exception {
         return message;
     }
 
