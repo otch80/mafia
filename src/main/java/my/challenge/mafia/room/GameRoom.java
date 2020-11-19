@@ -1,5 +1,6 @@
 package my.challenge.mafia.room;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
@@ -18,6 +19,13 @@ public class GameRoom {
         return userList.size();
     }
 
+    public ArrayList<String> getUserList(){
+        ArrayList<String> list = new ArrayList<String>();
+        for(String key : userList.keySet()){
+            list.add(key);
+        }
+        return list;
+    }
 
     // 방 생성 + 방장 입장 (생성자)
     public GameRoom(User user) {
