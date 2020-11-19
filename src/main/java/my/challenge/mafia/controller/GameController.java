@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+
 @Controller
 public class GameController {
 
@@ -30,6 +31,8 @@ public class GameController {
 
     @Autowired
     private RoomManager roomManager;
+
+
 
     /*
      ####################### 수정 중 ################################
@@ -45,14 +48,22 @@ public class GameController {
     // 방 입장
     @PostMapping("/enter") // URL 혹은 특정한 방법으로 방번호를 전달한다. ################ 차후 수정 필요
     public ModelAndView enterRoom(ModelAndView model, @RequestParam("num") int roomNumber, HttpServletRequest request, HttpServletResponse response){
-        // 프론트에서 토큰 정보를 안직 받지 못한 차후 수정 필요 
-        //String token = request.getCookies()[0].getValue().substring(6);
+        // 프론트에서 토큰 정보를 안직 받지 못한 차후 수정 필요
+        String token = new String();
+         for(int i = 0; i < request.getCookies().length; i++){
+             if(request.getCookies()[i].getName().equals("JW-TOKEN")){
+                 token = request.getCookies()[i].getValue().substring(6);
+             }
+         }
+         String username = jwtTokenUtil.getUsernameFromToken(token);
 
-        User user = new User("asdf"); // 유저 이름을 가져와서 User객체를 생성한다. 임시로 asdf로 설정한다
+        User user = new User(username); // 유저 이름을 가져와서 User객체를 생성한다. 임시로 asdf로 설정한다
 
         // 방 입장 성공
         if(roomManager.enterRoom(roomNumber, user)){
             model.setViewName("/game/day");
+            model.addObject("roomNumber",roomNumber);
+            model.addObject("username",username);
             return model;
         }// 방 입장 실패
         else{
