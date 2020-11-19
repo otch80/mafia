@@ -3,6 +3,7 @@ package my.challenge.mafia.room;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.PriorityQueue;
@@ -10,7 +11,6 @@ import java.util.PriorityQueue;
 
 /*
     방은 숫자로 구분한다.
-    점심 나가서 먹을 거 같애~~~
  */
 
 @Component
@@ -36,6 +36,11 @@ public class RoomManager {
     // 생성 가능한 방 번호를 갱신 - 우선 순위 큐에 다시 넣는 것임
     private void initRoomNumber(int number){
         this.restRoomList.add(number);
+    }
+
+    // 특정 방 번호의 유저리스트 가져오기
+    public ArrayList<String> getUserList(int roomNumber){
+        return roomList.get(Integer.toString(roomNumber)).getUserList();
     }
 
     // 방 생성

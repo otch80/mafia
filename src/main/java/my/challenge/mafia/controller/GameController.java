@@ -19,7 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 @Controller
@@ -59,11 +61,17 @@ public class GameController {
 
         User user = new User(username); // 유저 이름을 가져와서 User객체를 생성한다. 임시로 asdf로 설정한다
 
+
+
         // 방 입장 성공
         if(roomManager.enterRoom(roomNumber, user)){
+            List<String> userlist = roomManager.getUserList(roomNumber); // 현재 접속중인 유저 리스트
+
             model.setViewName("/game/day");
             model.addObject("roomNumber",roomNumber);
             model.addObject("username",username);
+            model.addObject("userlist",userlist);
+
             return model;
         }// 방 입장 실패
         else{
