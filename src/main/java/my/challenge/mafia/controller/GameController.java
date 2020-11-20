@@ -26,7 +26,7 @@ import java.util.List;
 
 // checkinghello
 // chekkkkkk 3333333
-
+// ㅇㅇㅇㅇ
 @Controller
 public class GameController {
 
