@@ -32,12 +32,7 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-<<<<<<< HEAD
-        System.out.println(username);
-        System.out.println(password);
 
-=======
->>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
         UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authentication.getName());
 
         try {

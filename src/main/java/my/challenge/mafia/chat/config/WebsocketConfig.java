@@ -20,10 +20,6 @@ public class WebsocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public boolean configureMessageConverters(List<MessageConverter> messageConverters) {
         messageConverters.add(escapingConverter());
-<<<<<<< HEAD
-        System.out.println("Here!");
-=======
->>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
         return true;
     }
 

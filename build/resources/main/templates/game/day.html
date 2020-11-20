@@ -35,8 +35,6 @@
         });
 
         function sendmsg() {
-            console.log(/*[[${userlist}]]*/);
-
             if (!socket.connected) {
                 $(".chatsub").val('');
                 $(".chat_box").append("\n채팅 서버에 접속중입니다 잠시만 기다려주세요");
@@ -103,6 +101,17 @@
 </head>
 
 <body>
+
+<!-- 게임팀 읽어볼 것 -->
+<!-- userlist 배열에 방 접속중인 사용자 목록 들어있음 호출해서 현재인원 출력시킬 것 -->
+<!-- 게임 실행 시 역할분담에 필요한 통신 자세하게 설명할 것 -->
+<!-- 채팅 보내면 자동으로 가장 아래로 내려가게 스크립트 짤 것 -->
+<!-- 접속중인 방 번호 화면에 출력하기 -->
+<!-- 반응형으로 웹 리사이징 시 크기 조절하는 코드 구현 -->
+
+<!-- 서버팀 읽어볼 것 -->
+<!-- 채팅이 지속해서 끊기는 현상 발생 / 자동 재접속 코드 구현할 것 -->
+
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Web Mafia</a>

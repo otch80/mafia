@@ -1,9 +1,6 @@
 package my.challenge.mafia.config;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
 import my.challenge.mafia.security.JwtAuthenticationEntryPoint;
 import my.challenge.mafia.security.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,11 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("REFRESH-TOKEN")
                 .logoutSuccessUrl("/");
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
         // 클라이언트가 요청한 리소스에 권한이 없을 경우 UsernamePasswordAuthenticationFilter가 기본 로그인 페이지로 이동시킨다. 때문에 그 앞에 커스텀 릴터를 등록한다.
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }

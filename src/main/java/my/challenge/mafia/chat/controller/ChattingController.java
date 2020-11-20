@@ -14,26 +14,14 @@ public class ChattingController {
     @Autowired
     private SimpMessageSendingOperations messagingTemplate;
 
-<<<<<<< HEAD
-    @MessageMapping("/TTT")
-    @SendTo("/topic/message")
-    public String tttx(String message) throws Exception {
-        return message;
-    }
 
-=======
->>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
+
     // 각자 채팅방으로 전송
     // 각 방 ID 별로 /room으로 전송되는 채팅 처리
     @MessageMapping("/room/{id}")
 	@SendTo("/topic/{id}")
-<<<<<<< HEAD
-    public Message ttt(Message message) throws Exception {
-//		messagingTemplate.convertAndSendToUser(message.getId(), "/topic/" + message.getRoomid(), message.getMsg());
-        // 어디서 setMsg 가 이루어 지는지 모르겠음
-=======
     public Message room(Message message) throws Exception {
->>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
+
         return message;
     }
 
