@@ -19,31 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64f161b6-b027-440e-a712-7ef8e7094546" name="Default Changelist" comment="새로운 소스코드입니다">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.4.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/MafiaApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/MafiaApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/chat/config/HttpHandshakeInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/chat/config/HttpHandshakeInterceptor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/chat/domain/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/chat/domain/Message.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/chat/xss/HTMLCharacterEscapes.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/chat/xss/HTMLCharacterEscapes.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/config/SpringConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/config/SpringConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/controller/ChatController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/controller/ChatController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/controller/MemberForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/controller/MemberForm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/domain/InitRoomInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/domain/InitRoomInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/domain/LoginToken.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/domain/LoginToken.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/domain/LoginUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/domain/LoginUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/domain/RoomInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/domain/RoomInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/repository/MemberRepository$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/repository/MemberRepository$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/repository/MemberRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/repository/MemberRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/repository/Repository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/repository/Repository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/repository/exception/DuplicateInsertException.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/repository/exception/DuplicateInsertException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/room/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/room/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/security/JwtRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/security/JwtRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/security/JwtResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/security/JwtResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/security/JwtTokenUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/security/JwtTokenUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/security/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/security/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/service/MemberService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/service/MemberService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/role.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/role.js" afterDir="false" />
+    <list default="true" id="64f161b6-b027-440e-a712-7ef8e7094546" name="Default Changelist" comment="새로운 소스코드입니다2">
+      <change beforePath="$PROJECT_DIR$/src/main/java/my/challenge/mafia/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/my/challenge/mafia/controller/GameController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +111,21 @@
       <option name="project" value="LOCAL" />
       <updated>1605850073525</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="새로운 소스코드입니다2">
+      <created>1605850397825</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1605850397825</updated>
+    </task>
+    <task id="LOCAL-00003" summary="새로운 소스코드입니다2">
+      <created>1605850407780</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1605850407780</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -150,7 +141,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="새로운 소스코드입니다" />
-    <option name="LAST_COMMIT_MESSAGE" value="새로운 소스코드입니다" />
+    <MESSAGE value="새로운 소스코드입니다2" />
+    <option name="LAST_COMMIT_MESSAGE" value="새로운 소스코드입니다2" />
   </component>
   <component name="WindowStateProjectService">
     <state width="321" height="442" key="Diff.GoToChangePopup" timestamp="1605846674249">
@@ -213,10 +205,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="ShowDiffWithBranchDialog/0.0.1536.824/1920.54.1280.984@0.0.1536.824" timestamp="1605850364243" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1605850090446">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1605850437961">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.54.1280.984@0.0.1536.824" timestamp="1605850090446" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.54.1280.984@0.0.1536.824" timestamp="1605850437961" />
     <state x="565" y="199" key="git4idea.merge.GitMergeDialog" timestamp="1605846934097">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
