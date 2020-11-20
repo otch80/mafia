@@ -17,7 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
 /*
  * 권한을 확인하는 필터
  * 유저의 모든 리소스 요청은 우선 해당 필터에서 권한을 확인한다.
@@ -46,10 +49,15 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String jwCookie = null;
         String refreshCookie = null;
 
+<<<<<<< HEAD
 
         Cookie[] cookies = request.getCookies();
 
 
+=======
+        Cookie[] cookies = request.getCookies();
+
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
         // 쿠키가 있다면 가져온다.
         if (cookies != null) {
             System.out.println("jwt : "+cookies[0].getValue());
@@ -64,8 +72,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             jwtToken = jwCookie.substring(6);
             //refreshToken = refreshCookie.substring(6);
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
             try {
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken);
             } catch (IllegalArgumentException e) {
@@ -73,6 +84,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
             } catch (ExpiredJwtException e) {
                 System.out.println("JWT Token has expired" + "\n" + e);
+<<<<<<< HEAD
 
             }
 
@@ -82,13 +94,23 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
 
 
+=======
+            }
+        } else {
+            logger.warn("JWT Token doesn't begin with Bearer String");
+        }
+
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
         // 토큰에서 성공적으로 이름을 가져왔는데 SecurityContextHolder에는 저장되어 있지 않을 때
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             // DB에서 username에 해당하는 계정 데이터를 가져온다.
 
             UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(username);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
             // 토큰이 유효하다면 인증이 완료된 UsernamePasswordAuthenticationToken 객체 생성
             if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
 
@@ -100,14 +122,20 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 // SecurityContextHolder에 등록해준다.
                 // 등록이 되어야 인가(Authorize)할 때 로그인 성공을 할 수 있다.
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
             }
         }
         // 다음 수행되어야 할 필터를 호출
         filterChain.doFilter(request, response);
     }
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
 }

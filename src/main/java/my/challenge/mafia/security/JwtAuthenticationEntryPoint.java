@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
 // 인증에 실패한 사용자의 response에 401상태코드(권한 X)를 담아 전송한다.
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
@@ -33,6 +36,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
                 cookies[i].setMaxAge(0); // 유효시간을 0으로 설정
                 response.addCookie(cookies[i]); // 응답 헤더에 추가
+<<<<<<< HEAD
 
             }
         }
@@ -40,5 +44,10 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         response.sendRedirect("/wrong");
 
 
+=======
+            }
+        }
+        response.sendRedirect("/wrong");
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
     }
 }

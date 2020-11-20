@@ -17,7 +17,10 @@ import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
@@ -44,13 +47,19 @@ public class JwtUserDetailsService implements UserDetailsService {
 
             return new User(member.getId(), member.getPassword(), grantedAuthorities);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
         } catch (NoSuchElementException e) {
             return null;
             //return new User(null, null, null);
         }
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 89eb01b1b390974067a5127f012df23423fa4786
     }
 }

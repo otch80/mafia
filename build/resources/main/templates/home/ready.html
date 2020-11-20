@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html>
+<script></script>
+
+<body>
+<div>
+    <form action="enter" method="post">
+        <fieldset> <legend>게임방 입장</legend>
+            <div>
+                방번호 &nbsp;&nbsp;: <input type="number" min="1" max="100" id="num" name="num" placeholder="방 번호" value="1" autofocus> <p>
+                <input type="submit" value="입장"> <!-- 입장이 방생성과 동일한 기능 -->
+                <button type="button" id="ready_submit" onclick="alert('방입장');">랜덤 입장</button> <!-- 랜덤입장시 0 전달하게 수정 -->
+            </div>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>
