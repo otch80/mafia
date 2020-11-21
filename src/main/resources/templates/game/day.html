@@ -104,8 +104,7 @@
 
 <!-- 게임팀 읽어볼 것 -->
 <!-- userlist 배열에 방 접속중인 사용자 목록 들어있음 호출해서 현재인원 출력시킬 것(완료) -->
-<!-- 게임 실행 시 역할분담에 필요한 통신 자세하게 설명할 것(통신 방식에 대한것? or 통신에 사용되는 변수들? 후자라면 main.js랑 day.html
-     작업하면서 필요한 변수들 얘기하겠음 지금 당장 day.html에서 필요한건 게임방에 몇명있는지 정수형으로 저장된 변수 -->
+<!-- 게임 실행 시 역할분담에 필요한 통신 자세하게 설명할 것(통신 방식에 대한것? or 통신에 사용되는 변수들?-->
 <!-- 접속중인 방 번호 화면에 출력하기(완료) -->
 <!-- 반응형으로 웹 리사이징 시 크기 조절하는 코드 구현 -->
 
@@ -157,10 +156,10 @@
     </nav>
     <div class="jumbotron my-3 mx-4">
         <div class="container-fluid">
-            <div class="my-2 row" style="height:500px; margin-bottom:20px;">
+            <div class="my-2 row" style="height:650px; margin-bottom:20px;">
                 <div class="col-9">
-                    <span class="text-info">생존자 현황</span>
-                    <h2 class="float-right mx-4" th:text="${roomNumber}+번방"></h2><br>
+                    <h1 th:text="${roomNumber}+번방"></h1>
+                    <span class="text-info">생존자 현황</span><br>
                     <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg" th:each="String : ${userlist}">
                         <path fill-rule="evenodd"
@@ -177,7 +176,7 @@
                     </div>
                     <!-- 채팅창 연결 -->
                 </div>
-                <span class="border" style="width:200px;">
+                <div class="col-2 border" style="width:250px;">
                     <div class="my-2 col">
                         <dl>
                             <dt>
@@ -191,8 +190,6 @@
                                     <span class="mx-2"><span th:text="${username}"></span></span>
                                 </svg>
                             </dd>
-
-
                             </dt>
                             <div class="my-4">
                                 <dt>
@@ -210,7 +207,7 @@
                         </dl>
 
                     </div>
-                </span>
+                </div>
             </div>
             <hr class="my-4">
 
