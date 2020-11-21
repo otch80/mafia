@@ -103,9 +103,10 @@
 <body>
 
 <!-- 게임팀 읽어볼 것 -->
-<!-- userlist 배열에 방 접속중인 사용자 목록 들어있음 호출해서 현재인원 출력시킬 것 -->
-<!-- 게임 실행 시 역할분담에 필요한 통신 자세하게 설명할 것 -->
-<!-- 접속중인 방 번호 화면에 출력하기 -->
+<!-- userlist 배열에 방 접속중인 사용자 목록 들어있음 호출해서 현재인원 출력시킬 것(완료) -->
+<!-- 게임 실행 시 역할분담에 필요한 통신 자세하게 설명할 것(통신 방식에 대한것? or 통신에 사용되는 변수들? 후자라면 main.js랑 day.html
+     작업하면서 필요한 변수들 얘기하겠음 지금 당장 day.html에서 필요한건 게임방에 몇명있는지 정수형으로 저장된 변수 -->
+<!-- 접속중인 방 번호 화면에 출력하기(완료) -->
 <!-- 반응형으로 웹 리사이징 시 크기 조절하는 코드 구현 -->
 
 <!-- 서버팀 읽어볼 것 -->
@@ -158,24 +159,10 @@
         <div class="container-fluid">
             <div class="my-2 row" style="height:500px; margin-bottom:20px;">
                 <div class="col-9">
-                    <p class="text-info">생존자 현황</p>
+                    <span class="text-info">생존자 현황</span>
+                    <h2 class="float-right mx-4" th:text="${roomNumber}+번방"></h2><br>
                     <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                    </svg>
-                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                    </svg>
-                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                    </svg>
-                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg">
+                        xmlns="http://www.w3.org/2000/svg" th:each="String : ${userlist}">
                         <path fill-rule="evenodd"
                             d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                     </svg>
@@ -195,40 +182,15 @@
                         <dl>
                             <dt>
                                 <h4>현재인원</h4>
-                            <dd>
+                            <!--num :${#numbers.sequence(1,5)} -동현(테스트용으로 적어봄) -->
+                            <dd th:each="String : ${userlist}">
                                 <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person-fill"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                    <span class="mx-2">사용자</span>
-                                    <!-- 서버로 부터던지, JS로 부터던지 사용자 받아와서 표시해야됨 -->
+                                    <span class="mx-2"><span th:text="${username}"></span></span>
                                 </svg>
                             </dd>
-                            <dd>
-                                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person-fill"
-                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                    <span class="mx-2 ">사용자</span>
-                                </svg>
-                            </dd>
-                            <dd>
-                                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person-fill"
-                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                    <span class="mx-2">사용자</span>
-                                </svg>
-                            </dd>
-                            <dd>
-                                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person-fill"
-                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                    <span class="mx-2">사용자</span>
-                                </svg>
-                            </dd>
-
 
 
                             </dt>
