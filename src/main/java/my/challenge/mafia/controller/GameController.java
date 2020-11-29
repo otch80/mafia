@@ -12,10 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static java.lang.Integer.parseInt;
 
 // checkinghello
 // chekkkkkk 3333333
@@ -75,6 +75,7 @@ public class GameController {
             model.addObject("roomNumber",roomNumber);
             model.addObject("username",username);
             model.addObject("userlist",userlist);
+            //model.addObject("userlistLength",userlist.size());
 
             return model;
         }// 방 입장 실패
@@ -89,7 +90,7 @@ public class GameController {
     // 방 생성
     @PostMapping("/makeRoom") // ################ 차후 수정 필요
     public ResponseEntity createRoom(@RequestBody InitRoomInfo initRoomInfo, HttpServletRequest request, HttpServletResponse response){
-        int roomNumber = Integer.parseInt(initRoomInfo.getRoom_number()); // 프론트에서 방 정보 전달받음
+        int roomNumber = parseInt(initRoomInfo.getRoom_number()); // 프론트에서 방 정보 전달받음
 
         // 클라이언트에서 토큰 정보를 아직 보내주지 않음
         // 토큰 정보를 보내주면 그 부분 처리 다시 해야함###############################################################################
@@ -145,9 +146,16 @@ public class GameController {
         }
     }
 
+    @ResponseBody
     @PostMapping("/enter/{roomid}") // 게임시작 시 ajax 통신 처리용
-    public ModelAndView inGame(ModelAndView mv){
-        return mv;
+    public Map<String, Object> inGame(@RequestParam("roomNumber") String roomNumber){
+        System.out.println("========eehehehehehehe");
+        Map<String, Object> map = new HashMap<>();
+
+        List<String> userlist = roomManager.getUserList(parseInt(roomNumber));
+        map.put("playerNum", userlist.size());
+
+        return map;
     }
 
 

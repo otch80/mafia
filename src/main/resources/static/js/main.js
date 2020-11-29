@@ -1,12 +1,16 @@
 import { role } from '/role.js';
 
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
 <script>
 var gameState = 0; // 게임 상태관리 변수 0:일땐 시작전, 1: 일땐 낮 2: 일땐 처형의 시간 3: 일땐 밤 4: 일땐 게임 종료
 var dayCount = 0;
 var playerRoles = [];
 var players = []; //서버로 부터 플레이어 정보를 받아와서 저장할 변수
+var player = {
+    name: 'null',
+    group: 'null',
+    live : true,
+    ability: false, //구조는 나중에 건들기
+};
 var playerNum = 0;
 var mafia = 0;
 var citizen = 0;
@@ -16,7 +20,7 @@ var yesPlayer;
 var chosenPlayer;
 
 $.ajax({
-    url:"컨트롤러 url",
+    url:"/enter/{roomid}",
     type:'GET',
     dataType:'json',
     async:false,
@@ -345,6 +349,5 @@ function endGame(group){ //게임을 끝내고 결과창을 출력하는 함수
         /* 마피아팀의 승리를 나타내는 웹페이지 또는 애니메이션 출력 */
     }
 }
-</script>
 
 
