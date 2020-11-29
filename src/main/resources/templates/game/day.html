@@ -15,6 +15,9 @@
     <script th:inline="javascript">
         /*<![CDATA[*/
 
+        console.log( /*[[ ${userlist} ]]*/); //유저 이름이 배열로 나오는데
+        console.log( /*[[ ${username} ]]*/); //username찍으면 정말 자기거만 출력되서 반복돌리면 자기 이름만 3명나옴
+
         var socket;
         var username = /*[[${username}]]*/;
 
@@ -31,21 +34,38 @@
                     $(".chat_box").append("\n" + JSON.parse(event.body).id + " >> " + JSON.parse(event.body).msg);
                     $(".chat_box").scrollTop($(".chat_box").prop('scrollHeight'));
                 });
+                // mafia 라고 가정
+                client.subscribe('/topic/'+/*[[${roomNumber}]]*/+"mafia", function (event) {
+                    $(".chat_box").append("\n[Mafia} " + JSON.parse(event.body).id + " >> " + JSON.parse(event.body).msg);
+                    $(".chat_box").scrollTop($(".chat_box").prop('scrollHeight'));
+                });
             });
         });
 
         function sendmsg() {
             if (!socket.connected) {
+                client = Stomp.over(sock);
                 $(".chatsub").val('');
                 $(".chat_box").append("\n채팅 서버에 접속중입니다 잠시만 기다려주세요");
                 $(".chatsub").focus();
             } else {
-                socket.send("/room/"+/*[[${roomNumber}]]*/,{},
+                if($("#inlineFormCustomSelectPref option:selected").val() == 0){ // 0이면 전체 1이면 팀채팅
+                    socket.send("/room/"+/*[[${roomNumber}]]*/,{},
                     JSON.stringify({
                         'msg': $(".chatsub").val(),
                         'id' : /*[[${username}]]*/,
                         'roomid' : /*[[${roomNumber}]]*/}
                         ));
+                }
+                else {
+                    socket.send("/room/"+/*[[${roomNumber}]]*/+"/mafia",{}, // maifa팀이라 가정
+                    JSON.stringify({
+                        'msg': $(".chatsub").val(),
+                        'id' : /*[[${username}]]*/,
+                        'roomid' : /*[[${roomNumber}]]*/}
+                        ));
+                }
+
                 $(".chatsub").val('');
                 $(".chatsub").focus();
             }
@@ -103,10 +123,9 @@
 <body>
 
 <!-- 게임팀 읽어볼 것 -->
-<!-- userlist 배열에 방 접속중인 사용자 목록 들어있음 호출해서 현재인원 출력시킬 것 -->
-<!-- 게임 실행 시 역할분담에 필요한 통신 자세하게 설명할 것 -->
-<!-- 채팅 보내면 자동으로 가장 아래로 내려가게 스크립트 짤 것 -->
-<!-- 접속중인 방 번호 화면에 출력하기 -->
+<!-- userlist 배열에 방 접속중인 사용자 목록 들어있음 호출해서 현재인원 출력시킬 것(완료) -->
+<!-- 게임 실행 시 역할분담에 필요한 통신 자세하게 설명할 것(통신 방식에 대한것? or 통신에 사용되는 변수들?-->
+<!-- 접속중인 방 번호 화면에 출력하기(완료) -->
 <!-- 반응형으로 웹 리사이징 시 크기 조절하는 코드 구현 -->
 
 <!-- 서버팀 읽어볼 것 -->
@@ -157,26 +176,12 @@
     </nav>
     <div class="jumbotron my-3 mx-4">
         <div class="container-fluid">
-            <div class="my-2 row" style="height:500px; margin-bottom:20px;">
+            <div class="my-2 row" style="height:650px; margin-bottom:20px;">
                 <div class="col-9">
-                    <p class="text-info">생존자 현황</p>
+                    <h1 th:text="${roomNumber}+번방"></h1>
+                    <span class="text-info">생존자 현황</span><br>
                     <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                    </svg>
-                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                    </svg>
-                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                    </svg>
-                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg">
+                        xmlns="http://www.w3.org/2000/svg" th:each="String : ${userlist}">
                         <path fill-rule="evenodd"
                             d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                     </svg>
@@ -191,47 +196,21 @@
                     </div>
                     <!-- 채팅창 연결 -->
                 </div>
-                <span class="border" style="width:200px;">
+                <div class="col-2 border" style="width:250px;">
                     <div class="my-2 col">
                         <dl>
                             <dt>
                                 <h4>현재인원</h4>
-                            <dd>
+                            <!--num :${#numbers.sequence(1,5)} -동현(테스트용으로 적어봄) -->
+                            <!--새로운 유저 접속시 자동으로 유저리스트 갱신되도록 ajax로 처리할 것 -->
+                            <dd th:each="userlist, stat : ${userlist}" th:object="${userlist}">
                                 <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person-fill"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                    <span class="mx-2">사용자</span>
-                                    <!-- 서버로 부터던지, JS로 부터던지 사용자 받아와서 표시해야됨 -->
+                                    <span class="mx-2"><span th:text="${stat.current}"></span></span>
                                 </svg>
                             </dd>
-                            <dd>
-                                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person-fill"
-                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                    <span class="mx-2 ">사용자</span>
-                                </svg>
-                            </dd>
-                            <dd>
-                                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person-fill"
-                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                    <span class="mx-2">사용자</span>
-                                </svg>
-                            </dd>
-                            <dd>
-                                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person-fill"
-                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                    <span class="mx-2">사용자</span>
-                                </svg>
-                            </dd>
-
-
-
                             </dt>
                             <div class="my-4">
                                 <dt>
@@ -249,14 +228,14 @@
                         </dl>
 
                     </div>
-                </span>
+                </div>
             </div>
             <hr class="my-4">
 
             <div class="row">
                 <div class="col-1">
                     <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                        <option selected>일반채팅</option>
+                        <option selected value="0">일반채팅</option>
                         <option value="1">팀채팅</option>
                     </select>
                 </div>
