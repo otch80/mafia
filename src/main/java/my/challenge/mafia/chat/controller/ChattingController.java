@@ -21,7 +21,14 @@ public class ChattingController {
     @MessageMapping("/room/{id}")
 	@SendTo("/topic/{id}")
     public Message room(Message message) throws Exception {
+        return message;
+    }
 
+    // 각자 채팅방으로 전송
+    // 각 방 ID 별로 /room으로 전송되는 채팅 처리
+    @MessageMapping("/room/{id}/mafia")
+    @SendTo("/topic/{id}/mafia")
+    public Message mafia_chat(Message message) throws Exception {
         return message;
     }
 
