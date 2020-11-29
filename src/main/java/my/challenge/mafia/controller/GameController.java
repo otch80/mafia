@@ -145,6 +145,12 @@ public class GameController {
         }
     }
 
+    @PostMapping("/enter/{roomid}") // 게임시작 시 ajax 통신 처리용
+    public ModelAndView inGame(ModelAndView mv){
+        return mv;
+    }
+
+
     // 게임 종료
     public String endGame(HttpServletRequest request, HttpServletResponse response) {
         int roomNumber = 1; // 프론트에서 전달 받아야 한다.
