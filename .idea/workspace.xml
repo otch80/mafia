@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -19,26 +16,24 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </select>
+    <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64f161b6-b027-440e-a712-7ef8e7094546" name="Default Changelist" comment="새로운 소스코드입니다2">
+    <list default="true" id="64f161b6-b027-440e-a712-7ef8e7094546" name="Default Changelist" comment="멀티채팅 구현">
       <change beforePath="$PROJECT_DIR$/.gradle/6.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.4.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/controller/GameController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/templates/game/day.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/game/day.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/game/day.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/game/day.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +78,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15722656" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
@@ -106,7 +104,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -146,7 +144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605968346052</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="멀티채팅 구현">
+      <created>1606493922687</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1606493922688</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -177,7 +182,8 @@
     <MESSAGE value="새로운 소스코드입니다" />
     <MESSAGE value="새로운 소스코드입니다2" />
     <MESSAGE value="day.html 작업 완료" />
-    <option name="LAST_COMMIT_MESSAGE" value="day.html 작업 완료" />
+    <MESSAGE value="멀티채팅 구현" />
+    <option name="LAST_COMMIT_MESSAGE" value="멀티채팅 구현" />
   </component>
   <component name="WindowStateProjectService">
     <state x="946" y="316" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1605943143768">
@@ -196,25 +202,29 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="548" y="153" key="FileChooserDialogImpl/0.0.1536.824/1920.54.1280.984@0.0.1536.824" timestamp="1605846327772" />
-    <state width="1877" height="201" key="GridCell.Tab.0.bottom" timestamp="1605970051958">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1606493945643">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="746" height="220" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.54.1280.984@0.0.1536.824" timestamp="1605850317497" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606493945643" />
     <state width="1877" height="201" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605970051958" />
-    <state width="1877" height="201" key="GridCell.Tab.0.center" timestamp="1605970051958">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1606493945643">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="746" height="220" key="GridCell.Tab.0.center/0.0.1536.824/1920.54.1280.984@0.0.1536.824" timestamp="1605850317497" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606493945643" />
     <state width="1877" height="201" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605970051958" />
-    <state width="1877" height="201" key="GridCell.Tab.0.left" timestamp="1605970051958">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1606493945643">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="746" height="220" key="GridCell.Tab.0.left/0.0.1536.824/1920.54.1280.984@0.0.1536.824" timestamp="1605850317496" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606493945643" />
     <state width="1877" height="201" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605970051958" />
-    <state width="1877" height="201" key="GridCell.Tab.0.right" timestamp="1605970051958">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1606493945643">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="746" height="220" key="GridCell.Tab.0.right/0.0.1536.824/1920.54.1280.984@0.0.1536.824" timestamp="1605850317497" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606493945643" />
     <state width="1877" height="201" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605970051958" />
     <state width="1493" height="464" key="GridCell.Tab.1.bottom" timestamp="1605849269000">
       <screen x="0" y="0" width="1536" height="824" />
@@ -240,19 +250,21 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="406" y="172" key="MultipleFileMergeDialog/0.0.1536.824/1920.54.1280.984@0.0.1536.824" timestamp="1605846964034" />
-    <state x="346" y="71" key="SettingsEditor" timestamp="1605942742678">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="277" y="0" key="SettingsEditor" timestamp="1606491668906">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="56" key="SettingsEditor/0.0.1536.824/1920.54.1280.984@0.0.1536.824" timestamp="1605848795520" />
+    <state x="277" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1606491668906" />
     <state x="346" y="71" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1605942742678" />
     <state x="93" y="93" width="1350" height="638" key="ShowDiffWithBranchDialog" timestamp="1605850364243">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="ShowDiffWithBranchDialog/0.0.1536.824/1920.54.1280.984@0.0.1536.824" timestamp="1605850364243" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1605968377527">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1606493929248">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.54.1280.984@0.0.1536.824" timestamp="1605850437961" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1606493929248" />
     <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605968377527" />
     <state x="462" y="255" width="996" height="642" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1605947255230">
       <screen x="0" y="0" width="1920" height="1040" />
