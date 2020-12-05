@@ -1,6 +1,4 @@
-import { role } from '/role.js';
 
-<script>
 var gameState = 0; // 게임 상태관리 변수 0:일땐 시작전, 1: 일땐 낮 2: 일땐 처형의 시간 3: 일땐 밤 4: 일땐 게임 종료
 var dayCount = 0;
 var playerRoles = [];
@@ -90,8 +88,8 @@ function defaultRole(playerNum){ //현재 플레이어 수에 따라 역할 배�
 }
 
 function shuffle(players){ //현재 플레이어 배열을 매개변수로 가져옴, 무작위로 섞는 함수
-    var j, //랜덤 함수넣을 변수
-    var x, //빈값 변수
+    var j; //랜덤 함수넣을 변수
+    var x; //빈값 변수
     var i; //매개변수로 받아온 변수 저장할 변수
     for(i=players.length;i;i-=1){
         j=Math.floor(Math.random()*i);

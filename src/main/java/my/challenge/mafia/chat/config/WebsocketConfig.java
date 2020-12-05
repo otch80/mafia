@@ -50,7 +50,7 @@ public class WebsocketConfig implements WebSocketMessageBrokerConfigurer {
     public void configureMessageBroker(MessageBrokerRegistry config) {
 
         // /topic, /queue URL subscribe 할때 사용할 URL
-        config.enableSimpleBroker("/topic");
+        config.enableSimpleBroker("/topic", "/start");
 
         // /이 publish할 때 사용할 URL
         config.setApplicationDestinationPrefixes("/");

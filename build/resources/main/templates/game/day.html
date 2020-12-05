@@ -37,10 +37,15 @@
                     $(".chat_box").append("\n" + JSON.parse(event.body).id + " >> " + JSON.parse(event.body).msg);
                     $(".chat_box").scrollTop($(".chat_box").prop('scrollHeight'));
                 });
+
                 // mafia 라고 가정
                 client.subscribe('/topic/'+/*[[${roomNumber}]]*/+"mafia", function (event) {
                     $(".chat_box").append("\n[Mafia} " + JSON.parse(event.body).id + " >> " + JSON.parse(event.body).msg);
                     $(".chat_box").scrollTop($(".chat_box").prop('scrollHeight'));
+                });
+                // 게임 시작 준비
+                client.subscribe('/start/'+/*[[${roomNumber}]]*/, function (event) {
+                    initGame();
                 });
             });
         });
@@ -136,6 +141,7 @@
             border-radius: 10px;
             box-shadow: inset 0px 0px 5px white;
         }
+
     </style>
     <style type="text/css">
         .jumbotron {
@@ -202,7 +208,7 @@
             </ul>
         </div>
     </nav>
-    <div class="jumbotron my-3 mx-4">
+    <div class="jumbotron my-3 mx-4" id="jumb">
         <div class="container-fluid">
             <div class="my-2 row" style="height:650px; margin-bottom:20px;">
                 <div class="col-9">
@@ -232,12 +238,12 @@
                             <!--num :${#numbers.sequence(1,5)} -동현(테스트용으로 적어봄) -->
                             <!--새로운 유저 접속시 자동으로 유저리스트 갱신되도록 ajax로 처리할 것 -->
                             <dd th:each="userlist, stat : ${userlist}" th:object="${userlist}">
-                                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person-fill"
+                                <button type="button" style="border:none; background-color : rgba(0,0,0,0)" th:id="vote_+${stat.index}">
+                                    <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person-fill"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                    <span class="mx-2"><span th:text="${stat.current}"></span></span>
-                                </svg>
+                                    <span class="mx-2"><span id="hi" th:text="${stat.current}"></span></span></svg></button>
                             </dd>
                             </dt>
                             <div class="my-4">

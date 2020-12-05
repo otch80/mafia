@@ -40,10 +40,31 @@ public class RoomManager {
     }
 
 
-    // 특정 방 번호의 유저리스트 가져오기
+    // 특정 방 번호의 유저리스트 가져오기 - 유저 이름만 가져온다.
     public ArrayList<String> getUserList(int roomNumber){
         return roomList.get(Integer.toString(roomNumber)).getUserList();
     }
+
+    // 유저 리스트 원본을 가져온다. HashMap 상태 그대로
+    public HashMap<String, User> getUserListHash(int roomNumber){
+        return roomList.get(Integer.toString(roomNumber)).getUserListHash();
+    }
+
+    // 투표된 유저 리스트 원본을 가져온다. HashMap 상태 그대로
+    public HashMap<String, Integer> getVoteListHash(int roomNumber) {
+        return roomList.get(Integer.toString(roomNumber)).getVoteList();
+    }
+
+    public int getVoteCount(int roomNumber){
+        return roomList.get(Integer.toString(roomNumber)).getVoteCount();
+    }
+
+    // 특정 유저를 투표하는 함수
+    public boolean voteUser(int roomNumber, String userName) {
+        System.out.println("room manager voter user");
+        return roomList.get(Integer.toString(roomNumber)).voteUser(userName);
+    }
+
 
     // 방 생성
     public boolean makeRoom(int roomNumber, User user){
@@ -91,7 +112,7 @@ public class RoomManager {
 
     // 게임 시작
     // 방 번호, 모든 유저 정보
-    public boolean startGame(int roomNumber, User[] users){
+    public boolean startGame(int roomNumber){
         return roomList.get(Integer.toString(roomNumber)).startGame();
     }
 

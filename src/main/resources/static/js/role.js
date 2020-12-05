@@ -1,5 +1,3 @@
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
 var role = {
     citizen: {
         name: 'citizen',
@@ -81,4 +79,3 @@ var role = {
 }
 
 export { role };
-</script>
