@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<script
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+<script>
+
+
+</script>
+
+<body>
+<div class="container">
+    <form id="loginData" action="/home" method="post">
+        <div class="form-group">
+            <label for="username">이름</label>
+            ID : <input type="text" id="username" name="username" placeholder="이름을 입력하세요" autofocus/>
+            PW : <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요"/>
+        </div>
+        <button id="input_submit">보내기</button>
+        <a href="/signupForm">회원가입</a>
+    </form>
+</div> <!-- /container -->
+</body>
+</html>
+<!--
+    jquery를 통해서 json방식으로 전송가능
+-->
