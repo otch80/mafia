@@ -29,37 +29,25 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64f161b6-b027-440e-a712-7ef8e7094546" name="Default Changelist" comment="새로운 소스코드입니다2">
-      <change afterPath="$PROJECT_DIR$/src/main/java/my/challenge/mafia/domain/Player.java" afterDir="false" />
+    <list default="true" id="64f161b6-b027-440e-a712-7ef8e7094546" name="Default Changelist" comment="2020 12 06 vote">
+      <change afterPath="$PROJECT_DIR$/src/main/java/my/challenge/mafia/room/Ability.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.4.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.4.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/chat/config/WebsocketConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/chat/config/WebsocketConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/chat/controller/ChattingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/chat/controller/ChattingController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/controller/GameController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/room/GameRoom.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/room/GameRoom.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/room/RoomManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/room/RoomManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/security/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/my/challenge/mafia/security/Role.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/static/js/role.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/static/js/role.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/templates/game/day.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/game/day.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/my/challenge/mafia/chat/config/WebsocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/my/challenge/mafia/chat/config/WebsocketConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/my/challenge/mafia/chat/controller/ChattingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/my/challenge/mafia/chat/controller/ChattingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/my/challenge/mafia/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/my/challenge/mafia/controller/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/my/challenge/mafia/room/GameRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/my/challenge/mafia/room/GameRoom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/my/challenge/mafia/room/RoomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/my/challenge/mafia/room/RoomManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/role.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/role.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/game/day.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/game/day.html" afterDir="false" />
     </list>
@@ -153,7 +141,8 @@
       <updated>1605845397677</updated>
       <workItem from="1607069579265" duration="15369000" />
       <workItem from="1607172257125" duration="1210000" />
-      <workItem from="1607173485355" duration="10462000" />
+      <workItem from="1607173485355" duration="10503000" />
+      <workItem from="1607261897310" duration="33115000" />
     </task>
     <task id="LOCAL-00001" summary="새로운 소스코드입니다">
       <created>1605850073525</created>
@@ -183,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605968346052</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="2020 12 06 vote">
+      <created>1607183982464</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1607183982464</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,7 +213,8 @@
     <MESSAGE value="새로운 소스코드입니다" />
     <MESSAGE value="day.html 작업 완료" />
     <MESSAGE value="새로운 소스코드입니다2" />
-    <option name="LAST_COMMIT_MESSAGE" value="새로운 소스코드입니다2" />
+    <MESSAGE value="2020 12 06 vote" />
+    <option name="LAST_COMMIT_MESSAGE" value="2020 12 06 vote" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
