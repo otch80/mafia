@@ -3,10 +3,7 @@ package my.challenge.mafia.room;
 
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.PriorityQueue;
+import java.util.*;
 
 
 /*
@@ -50,9 +47,14 @@ public class RoomManager {
         return roomList.get(Integer.toString(roomNumber)).getUserListHash();
     }
 
-    // 투표된 유저 리스트 원본을 가져온다. HashMap 상태 그대로
-    public HashMap<String, Integer> getVoteListHash(int roomNumber) {
+    // 투표된 유저 리스트 원본을 가져온다.
+    public List<Integer> getVoteList(int roomNumber) {
         return roomList.get(Integer.toString(roomNumber)).getVoteList();
+    }
+
+    // 투표되는 유저의 이름을 가져온다.
+    public List<String> getVoteUserNameList(int roomNumber){
+        return roomList.get(Integer.toString(roomNumber)).getVoteUserNameList();
     }
 
     public int getVoteCount(int roomNumber){
@@ -61,7 +63,6 @@ public class RoomManager {
 
     // 특정 유저를 투표하는 함수
     public boolean voteUser(int roomNumber, String userName) {
-        System.out.println("room manager voter user");
         return roomList.get(Integer.toString(roomNumber)).voteUser(userName);
     }
 

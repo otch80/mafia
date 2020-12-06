@@ -160,6 +160,7 @@ public class GameController {
     }
 
 
+    // 게임 시작 ajax 통신
     @ResponseBody
     @PostMapping("/enter/{roomid}") // 게임시작 시 ajax 통신 처리용
     public Map<String, Object> inGame(@RequestParam("roomNumber") String roomNumber){
@@ -174,6 +175,7 @@ public class GameController {
         return map;
     }
 
+    // 역할 할당 ajax 통신
     @ResponseBody
     @PostMapping("/assign/{roomid}")
     public Map<String, Object> assignRole(@PathVariable("roomid") String roomid, @RequestParam(value = "playerRoles[]") List<String> playerRoles){
@@ -199,21 +201,16 @@ public class GameController {
         return map;
     }
 
+    // 투표 수행 ajax 통신
     @ResponseBody
     @PostMapping("/vote/{roomid}")
     public Map<String, Object> vote(@PathVariable("roomid") String roomid, @RequestParam(value = "votedPlayer") String playerName){
         Map<String, Object> map = new HashMap<>();
         try{
-            System.out.println("=============="+playerName);
             int voteCount = 999;
-
-
             //voteCount = roomManager.getVoteCount(Integer.parseInt(roomid));
-            System.out.println("==============222"+playerName);
             roomManager.voteUser(Integer.parseInt(roomid),playerName);
-            System.out.println("==============333"+playerName);
             System.out.println("투표자 : "+roomManager.getVoteCount(Integer.parseInt(roomid))); // 투표 횟수 출력 0이면 끝
-
             return map;
         }catch (Exception e){
             System.out.println(e);
@@ -221,6 +218,30 @@ public class GameController {
         return map;
     }
 
+    // 투표 결과 리턴 ajax 통신
+    @ResponseBody
+    @PostMapping("/votefinal/{roomid}")
+    public Map<String, Object> returnVote(@PathVariable("roomid") String roomid){
+        Map<String, Object> map = new HashMap<>();
+        try {
+            List<String> voteUserNameList = roomManager.getVoteUserNameList(Integer.parseInt(roomid));
+            List<Integer> voteList = roomManager.getVoteList(Integer.parseInt(roomid));
+
+            int len = voteList.size();
+            int max_voted_user_index = 0;
+            for(int i = 1; i < len; i++){
+                if(voteList.get(i) > voteList.get(max_voted_user_index)){
+                    max_voted_user_index = i;
+                }
+            }
+            System.out.println(voteUserNameList.get(max_voted_user_index));
+            map.put("kingPlayer", voteUserNameList.get(max_voted_user_index));
+            return map;
+        } catch (Exception e) {
+            System.out.println(e);
+            return map;
+        }
+    }
 
 
 

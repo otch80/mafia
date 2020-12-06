@@ -18,19 +18,26 @@ public class GameRoom {
     private HashMap<String, User> userList;
     private boolean start; // 게임의 시작 유무 판단
     private boolean day; // 낮인지 유무
-    private HashMap<String, Integer> voteList = new HashMap<>();
+    private List<String> voteUserNameList = new ArrayList<>();
+    private List<Integer> voteList = new ArrayList<>();
     private int voteCount = 0; // 투표된 횟수
 
     public HashMap<String, User> getUserListHash() {
         return userList;
     }
 
-    public HashMap<String, Integer> getVoteList(){
+    // 투표 현황을 리턴
+    public List<Integer> getVoteList(){
         return voteList;
     }
 
     public int getVoteCount(){
         return voteCount;
+    }
+
+    // 투표 현황인 voteList와 매핑된 유저 이름을 리턴한다.
+    public List<String> getVoteUserNameList(){
+        return voteUserNameList;
     }
 
     // 유저 현황 확인 함수
@@ -115,8 +122,14 @@ public class GameRoom {
 //                    // 직업이 마피아라면 마피아 전용 채팅방 구독 #############################################
 //                }
                 System.out.println("사용자 인풋");
-                voteList.put(key, 0); // 투표된 유저 정보 초기화
+                voteUserNameList.add(key);
+                voteList.add(0);
             }
+            int len = voteList.size();
+            for(int i = 0; i < len; i++){
+                System.out.println("가즈아 : ==== " + i + " ====");
+            }
+
             voteCount = userList.size(); // 유저 수 만큼으로 설정 0이 되면 모든 유저가 투표를 완료한 것임
             System.out.println("game room vote : "+voteCount);
             return true;
@@ -131,16 +144,28 @@ public class GameRoom {
         System.out.println("gameRoom voter user");
 
         try{
-            for(String key : voteList.keySet()){
-                if(voteList.get(key).equals(userName)){
-                    int userVoteCount = voteList.get(userName);
-                    voteList.put(userName, userVoteCount+1);
-                    System.out.println("pre vote : "+voteCount);
-                    voteCount--;
-                    System.out.println("post vote : "+voteCount);
+            int len = voteList.size();
+            for(int i = 0; i < len; i++){
+                if(voteUserNameList.get(i).equals(userName)){
+                    int voteNum = voteList.get(i);
+                    voteList.set(i,voteNum+1);
+                    voteCount -= 1;
+                    System.out.println(voteUserNameList.get(i));
                     return true;
                 }
             }
+
+
+//            for(String key : voteList.keySet()){
+//                if(voteList.get(key).equals(userName)){
+//                    int userVoteCount = voteList.get(userName);
+//                    voteList.put(userName, userVoteCount+1);
+//                    System.out.println("pre vote : "+voteCount);
+//                    voteCount--;
+//                    System.out.println("post vote : "+voteCount);
+//                    return true;
+//                }
+//            }
             return false;
         }catch (Exception e){
             System.out.println(e);
