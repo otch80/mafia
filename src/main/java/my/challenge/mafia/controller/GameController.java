@@ -25,8 +25,9 @@ import java.util.HashMap;
 import java.util.List;
 
 // checkinghello
-// chekkkkkk 3333333
-// ㅇㅇㅇㅇ
+// push test
+// pull test
+
 @Controller
 public class GameController {
 
