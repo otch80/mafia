@@ -1,8 +1,12 @@
 package my.challenge.mafia.room;
 
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /*
     초기 방 생성시 유저를 번호로 구별한다.
@@ -14,6 +18,27 @@ public class GameRoom {
     private HashMap<String, User> userList;
     private boolean start; // 게임의 시작 유무 판단
     private boolean day; // 낮인지 유무
+    private List<String> voteUserNameList = new ArrayList<>();
+    private List<Integer> voteList = new ArrayList<>();
+    private int voteCount = 0; // 투표된 횟수
+
+    public HashMap<String, User> getUserListHash() {
+        return userList;
+    }
+
+    // 투표 현황을 리턴
+    public List<Integer> getVoteList(){
+        return voteList;
+    }
+
+    public int getVoteCount(){
+        return voteCount;
+    }
+
+    // 투표 현황인 voteList와 매핑된 유저 이름을 리턴한다.
+    public List<String> getVoteUserNameList(){
+        return voteUserNameList;
+    }
 
     // 유저 현황 확인 함수
     public int getUserAmount(){
@@ -93,15 +118,60 @@ public class GameRoom {
         try{
             start = true;
             for(String key : userList.keySet()){
-                if(userList.get(key).getRole().equals("mafia")){
-                    // 직업이 마피아라면 마피아 전용 채팅방 구독 #############################################
-                }
+//                if(userList.get(key).getRole().equals("mafia")){
+//                    // 직업이 마피아라면 마피아 전용 채팅방 구독 #############################################
+//                }
+                System.out.println("사용자 인풋");
+                voteUserNameList.add(key);
+                voteList.add(0);
             }
+            int len = voteList.size();
+            for(int i = 0; i < len; i++){
+                System.out.println("가즈아 : ==== " + i + " ====");
+            }
+
+            voteCount = userList.size(); // 유저 수 만큼으로 설정 0이 되면 모든 유저가 투표를 완료한 것임
+            System.out.println("game room vote : "+voteCount);
             return true;
         }catch (Exception e){
             System.out.println("My Error : startGame is fail" + "\n" + e);
             return false;
         }
+    }
+
+    // 특정 유저 투표하기
+    public boolean voteUser(String userName){
+        System.out.println("gameRoom voter user");
+
+        try{
+            int len = voteList.size();
+            for(int i = 0; i < len; i++){
+                if(voteUserNameList.get(i).equals(userName)){
+                    int voteNum = voteList.get(i);
+                    voteList.set(i,voteNum+1);
+                    voteCount -= 1;
+                    System.out.println(voteUserNameList.get(i));
+                    return true;
+                }
+            }
+
+
+//            for(String key : voteList.keySet()){
+//                if(voteList.get(key).equals(userName)){
+//                    int userVoteCount = voteList.get(userName);
+//                    voteList.put(userName, userVoteCount+1);
+//                    System.out.println("pre vote : "+voteCount);
+//                    voteCount--;
+//                    System.out.println("post vote : "+voteCount);
+//                    return true;
+//                }
+//            }
+            return false;
+        }catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
+
     }
 
     // 게임 종료

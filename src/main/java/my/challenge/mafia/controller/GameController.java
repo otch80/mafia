@@ -2,6 +2,7 @@ package my.challenge.mafia.controller;
 
 
 import my.challenge.mafia.domain.InitRoomInfo;
+import my.challenge.mafia.domain.Player;
 import my.challenge.mafia.domain.RoomInfo;
 import my.challenge.mafia.room.RoomManager;
 import my.challenge.mafia.room.User;
@@ -9,24 +10,23 @@ import my.challenge.mafia.security.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+
+import static java.lang.Integer.parseInt;
 
 // checkinghello
-// chekkkkkk 3333333
-// ㅇㅇㅇㅇ
+// push test
+// pull test
+
 @Controller
 public class GameController {
 
@@ -43,6 +43,19 @@ public class GameController {
 
 
     */
+
+    List<String> shuffle(List<String> players){ //현재 플레이어 배열을 매개변수로 가져옴, 무작위로 섞는 함수
+        double j; //랜덤 함수넣을 변수
+        String x; //빈값 변수
+        int i; //매개변수로 받아온 변수 저장할 변수
+        for(i=players.size(); i == 0 ;i--){
+            j=Math.floor(Math.random()*i);
+            x=players.get(i-1);
+            players.set(i-1, players.get((int)j));
+            players.set((int)j,x);
+        } //이 부분은 https://malonmiming.tistory.com/106 해당 링크를 많이 참조했음. 시간복잡도상 가장 효율적이라 판단
+        return players;
+    }
 
 
 
@@ -75,6 +88,7 @@ public class GameController {
             model.addObject("roomNumber",roomNumber);
             model.addObject("username",username);
             model.addObject("userlist",userlist);
+            //model.addObject("userlistLength",userlist.size());
 
             return model;
         }// 방 입장 실패
@@ -89,7 +103,7 @@ public class GameController {
     // 방 생성
     @PostMapping("/makeRoom") // ################ 차후 수정 필요
     public ResponseEntity createRoom(@RequestBody InitRoomInfo initRoomInfo, HttpServletRequest request, HttpServletResponse response){
-        int roomNumber = Integer.parseInt(initRoomInfo.getRoom_number()); // 프론트에서 방 정보 전달받음
+        int roomNumber = parseInt(initRoomInfo.getRoom_number()); // 프론트에서 방 정보 전달받음
 
         // 클라이언트에서 토큰 정보를 아직 보내주지 않음
         // 토큰 정보를 보내주면 그 부분 처리 다시 해야함###############################################################################
@@ -137,13 +151,99 @@ public class GameController {
         int userNumber = 8; // 프론트에서 전달 받는다.
         User[] users = new User[userNumber]; // 프론트에서 유저 리스트를 받아온다.
 
-        if(roomManager.startGame(roomNumber, users)){
+        if(roomManager.startGame(roomNumber)){
             return "/startSuccess";
         }else{
             // 게임 시작에 실패했습니다. 다시 시도해 주세요 알림문 가능
             return "/startFail";
         }
     }
+
+
+    // 게임 시작 ajax 통신
+    @ResponseBody
+    @PostMapping("/enter/{roomid}") // 게임시작 시 ajax 통신 처리용
+    public Map<String, Object> inGame(@RequestParam("roomNumber") String roomNumber){
+        System.out.println("========eehehehehehehe");
+        Map<String, Object> map = new HashMap<>();
+
+        List<String> userlist = roomManager.getUserList(parseInt(roomNumber));
+        map.put("playerNum", userlist.size());
+        map.put("players", userlist);
+        roomManager.startGame(parseInt(roomNumber));
+
+        return map;
+    }
+
+    // 역할 할당 ajax 통신
+    @ResponseBody
+    @PostMapping("/assign/{roomid}")
+    public Map<String, Object> assignRole(@PathVariable("roomid") String roomid, @RequestParam(value = "playerRoles[]") List<String> playerRoles){
+        Map<String, Object> map = new HashMap<>();
+
+        //Collections.shuffle(playerRoles);
+
+        playerRoles = shuffle(playerRoles);
+
+        List<String> userlist = roomManager.getUserList(parseInt(roomid));
+
+        List<Player> playerList = new ArrayList<>();
+        for(int i = 0; i < userlist.size(); i++){
+            System.out.println(userlist.get(i));
+            System.out.println(playerRoles.get(i));
+            Player player = new Player();
+            player.setUserId(userlist.get(i));
+            player.setJobName(playerRoles.get(i));
+            playerList.add(player);
+        }
+        System.out.println("hello");
+        map.put("players", playerList);
+        return map;
+    }
+
+    // 투표 수행 ajax 통신
+    @ResponseBody
+    @PostMapping("/vote/{roomid}")
+    public Map<String, Object> vote(@PathVariable("roomid") String roomid, @RequestParam(value = "votedPlayer") String playerName){
+        Map<String, Object> map = new HashMap<>();
+        try{
+            int voteCount = 999;
+            //voteCount = roomManager.getVoteCount(Integer.parseInt(roomid));
+            roomManager.voteUser(Integer.parseInt(roomid),playerName);
+            System.out.println("투표자 : "+roomManager.getVoteCount(Integer.parseInt(roomid))); // 투표 횟수 출력 0이면 끝
+            return map;
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return map;
+    }
+
+    // 투표 결과 리턴 ajax 통신
+    @ResponseBody
+    @PostMapping("/votefinal/{roomid}")
+    public Map<String, Object> returnVote(@PathVariable("roomid") String roomid){
+        Map<String, Object> map = new HashMap<>();
+        try {
+            List<String> voteUserNameList = roomManager.getVoteUserNameList(Integer.parseInt(roomid));
+            List<Integer> voteList = roomManager.getVoteList(Integer.parseInt(roomid));
+
+            int len = voteList.size();
+            int max_voted_user_index = 0;
+            for(int i = 1; i < len; i++){
+                if(voteList.get(i) > voteList.get(max_voted_user_index)){
+                    max_voted_user_index = i;
+                }
+            }
+            System.out.println(voteUserNameList.get(max_voted_user_index));
+            map.put("kingPlayer", voteUserNameList.get(max_voted_user_index));
+            return map;
+        } catch (Exception e) {
+            System.out.println(e);
+            return map;
+        }
+    }
+
+
 
     // 게임 종료
     public String endGame(HttpServletRequest request, HttpServletResponse response) {

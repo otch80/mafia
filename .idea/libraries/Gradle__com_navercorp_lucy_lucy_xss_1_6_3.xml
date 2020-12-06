@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.navercorp.lucy:lucy-xss:1.6.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.navercorp.lucy/lucy-xss/1.6.3/30abf9c577e524cf965b20f1d2a45d299ea1fd1c/lucy-xss-1.6.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.navercorp.lucy/lucy-xss/1.6.3/b1a33b6184400abe0e3aa3ef7a37e390bce1f75d/lucy-xss-1.6.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

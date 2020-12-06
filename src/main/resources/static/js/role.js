@@ -8,7 +8,7 @@ var role = {
         name: 'cop',
         group: 'citizen',
         ability: true,
-        abilityFunc: function (server, chosenPlayer) {//서버로부터 선택할 플레이어정보 받아옴
+        abilityFunc: function (chosenPlayer) {//서버로부터 선택할 플레이어정보 받아옴
             if (chosenPlayer.status == 1/* status가 1이면 생존 */) {
                 if (chosenPlayer.name == 'mafia') { //지목한 플레이어의 상태가 마피아라면
                     showMafia(1);
@@ -29,7 +29,7 @@ var role = {
         name: 'doctor',
         group: 'citizen',
         ability: true,
-        abilityFunc: function (server, chosenPlayer) {//서버로 부터 플레이어정보 받아옴
+        abilityFunc: function (chosenPlayer) {//서버로 부터 플레이어정보 받아옴
             if (chosenPlayer.status == 1/*지목한 플레이어가 죽었는가? 아니라면 실행*/) {
                 chosenPlayer.imperishability = true; //플레이어의 상태를 무적으로 바꾸어 마피아로 부터 보호
             }
@@ -54,7 +54,7 @@ var role = {
         name: 'spy',
         group: 'citizen', // spy의 성격상 마피아를 지목하지 않으면 시민팀이기 때문에 처음엔 citizen으로 배정함
         ability: true,
-        abilityFunc: function (server, chosenPlayer) {
+        abilityFunc: function (chosenPlayer) {
             if (chosenPlayer.status == 1/*지목한 플레이어가 죽었는가? 아니라면 실행*/) {
                 if (chosenPlayer.name == 'mafia') {//선택한 플레이어의 이름이 마피아가 맞으면 실행
                     this.group = 'mafia' // 현재플레이어는 마피아그룹이됨 이부분코드는 나중에 손봐줘야함
