@@ -24,6 +24,14 @@ public class ChattingController {
         return message;
     }
 
+    // 게임시작
+    @MessageMapping("/room/{id}/start")
+    @SendTo("/start/{id}")
+    public Message start(Message message) throws Exception {
+        message.setMsg("initGame();");
+        return message;
+    }
+
     // 각자 채팅방으로 전송
     // 각 방 ID 별로 /room으로 전송되는 채팅 처리
     @MessageMapping("/room/{id}/mafia")

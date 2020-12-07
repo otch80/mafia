@@ -1,5 +1,6 @@
 var gameState = 0;
 var dayCount = 0;
+
 var voteT = 0;
 var playerNum = 0;
 var votedPlayer;
@@ -8,18 +9,22 @@ var choicePlayer;
 var kingVotedPlayer;
 var mafiaLen;
 var citizenLen;
+
 var role = {
     citizen: {
         jobName: 'citizen',
         group: 'citizen',
+
         live: true,
         ability: false,
         abilityFunc: function (chosenPlayer) {
         }
+
     },
     cop: {
         jobName: 'cop',
         group: 'citizen',
+
         live: true,
         ability: true,
         abilityFunc: function () {//서버로부터 선택할 플레이어정보 받아옴
@@ -82,6 +87,7 @@ var role = {
                 })
             }
         },
+
     },
     mafia: {
         jobName: 'mafia',
@@ -232,6 +238,7 @@ function voteTime() {
                 dataType: 'json',
                 async: false,
                 success: function (data) {
+
                     kingVotedPlayer = data.kingVotedPlayer;
                     console.log(kingVotedPlayer);
                 }
@@ -529,5 +536,4 @@ function initGame() { //게임 실행 함수
     } else {
         alert("인원이 부족합니다");
     }
-
 }
