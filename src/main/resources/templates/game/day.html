@@ -33,18 +33,18 @@
 
             client.connect({}, function () {
                 // 해당 토픽 구독
-                client.subscribe('/topic/'+/*[[${roomNumber}]]*/, function (event) {
+                client.subscribe('/topic/' +/*[[${roomNumber}]]*/, function (event) {
                     $(".chat_box").append("\n" + JSON.parse(event.body).id + " >> " + JSON.parse(event.body).msg);
                     $(".chat_box").scrollTop($(".chat_box").prop('scrollHeight'));
                 });
 
                 // mafia 라고 가정
-                client.subscribe('/topic/'+/*[[${roomNumber}]]*/+"mafia", function (event) {
+                client.subscribe('/topic/' +/*[[${roomNumber}]]*/ +"mafia", function (event) {
                     $(".chat_box").append("\n[Mafia} " + JSON.parse(event.body).id + " >> " + JSON.parse(event.body).msg);
                     $(".chat_box").scrollTop($(".chat_box").prop('scrollHeight'));
                 });
                 // 게임 시작 준비
-                client.subscribe('/start/'+/*[[${roomNumber}]]*/, function (event) {
+                client.subscribe('/start/' +/*[[${roomNumber}]]*/, function (event) {
                     initGame();
                 });
             });
@@ -57,20 +57,21 @@
                 $(".chat_box").append("\n채팅 서버에 접속중입니다 잠시만 기다려주세요");
                 $(".chatsub").focus();
             } else {
-                if($("#inlineFormCustomSelectPref option:selected").val() == 0){ // 0이면 전체 1이면 팀채팅
-                    socket.send("/room/"+/*[[${roomNumber}]]*/,{},
-                    JSON.stringify({
-                        'msg': $(".chatsub").val(),
-                        'id' : /*[[${username}]]*/,
-                        'roomid' : /*[[${roomNumber}]]*/}
+                if ($("#inlineFormCustomSelectPref option:selected").val() == 0) { // 0이면 전체 1이면 팀채팅
+                    socket.send("/room/" +/*[[${roomNumber}]]*/, {},
+                        JSON.stringify({
+                                'msg': $(".chatsub").val(),
+                                'id': /*[[${username}]]*/,
+                                'roomid': /*[[${roomNumber}]]*/
+                            }
                         ));
-                }
-                else {
-                    socket.send("/room/"+/*[[${roomNumber}]]*/+"/mafia",{}, // maifa팀이라 가정
-                    JSON.stringify({
-                        'msg': $(".chatsub").val(),
-                        'id' : /*[[${username}]]*/,
-                        'roomid' : /*[[${roomNumber}]]*/}
+                } else {
+                    socket.send("/room/" +/*[[${roomNumber}]]*/ +"/mafia", {}, // maifa팀이라 가정
+                        JSON.stringify({
+                                'msg': $(".chatsub").val(),
+                                'id': /*[[${username}]]*/,
+                                'roomid': /*[[${roomNumber}]]*/
+                            }
                         ));
                 }
 
@@ -112,10 +113,12 @@
                 if (!event.shiftKey) sendmsg();
             }
         }
-    /*]]>*/
+
+        /*]]>*/
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+
         .chat_box {
             border: none;
             resize: none;
@@ -154,7 +157,7 @@
     <style type="text/css">
         .jumbotron {
             font-family: 'Nanum Pen Script';
-            font-size:1.3em;
+            font-size: 1.3em;
             background-image: url('https://cdn.pixabay.com/photo/2016/11/21/03/56/landscape-1844227_960_720.png');
             background-size: cover;
         }
@@ -332,7 +335,6 @@
                         </dt>
                     </div>
                 </dl>
-
             </div>
         </div>
     </div>
