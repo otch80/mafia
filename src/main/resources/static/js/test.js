@@ -115,7 +115,6 @@ var role = {
                                     $("#vote_" + i).attr("onclick", '').unbind('click');
                                 }
                                 player=role['mafia'];
-                                console.log(player);
                             }
                             else{
                                 $(".chat_box").append("\n선택한 대상은 mafia가 아닙니다.");
@@ -147,10 +146,6 @@ function checkWin(){ //어느 진영이 승리하였는지에 관한 함수
         success: function (data) {
             mafiaLen = data.mafiaLen;
             citizenLen = data.citizenLen;
-            console.log(mafiaLen);
-            console.log("===========================================================1");
-            console.log(citizenLen);
-            console.log("===========================================================1");
         }
     });
     if(mafiaLen!=0){
@@ -191,7 +186,7 @@ function dayTime() { //낮시간 진행시키는 함수
             $(".chat_box").append("\n1분간 투표를 진행합니다 현재인원 리스트에서 마피아를 지목해주세요");
             $(".chat_box").scrollTop($(".chat_box")[0].scrollHeight);
             voteTime();
-        }, 10000); // 3분뒤 투표실행
+        }, 5000); // 3분뒤 투표실행
     }
 }
 
@@ -212,6 +207,7 @@ function voteTime() {
                             dataType: 'json',
                             async: false,
                             success: function (data) {
+                            alert("투표가 완료되었습니다.");
                             }
                         });
                         voteT++;
@@ -248,7 +244,7 @@ function voteTime() {
                 checkWin();
                 nightTime();
             }
-        }, 20000);
+        }, 5000);
     } else if (gameState == 2) { //마피아만 투표를 한다는것.
         if (player.live === true) {
             for (var i = 0; i < playerNum; i++) {
@@ -293,7 +289,6 @@ function diePlayer(Player) {
         },
         success: function (data) {
             livePlayer = data.livePlayerLen;
-            console.log(data.livePlayerLen);
         }
     });
     var $dieS = $(`<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor"
@@ -310,8 +305,8 @@ function diePlayer(Player) {
         </svg>
     </dd>`);
     for (var i = 1; i <= playerNum; i++) {
-        if ($('#current').children()[i].innerText === Player) {
-            console.log($('#current').children()[i].innerText);
+
+        if ($('#current').children()[i].outerText === Player) {
             $('#current').children()[i].remove();
         }
     }
@@ -339,9 +334,6 @@ function nightTime() { //일반 시민들 스크립트 처리는 어떻게 할�
         /* 밤 화면을 출력해주는 코드 작성
                 여기서는 서버로부터 플레이어의 직업과 그룹정보를 받아오는 코드도 작성 */
     }
-    console.log("=====================================");
-    console.log(player);
-    console.log("=====================================");
     //채팅창 마피아만 쓸수있게해야됨
     if (player.live === true) {
         if (player.jobName === 'mafia') {
@@ -395,7 +387,7 @@ function defaultRole(playerNum) { //현재 플레이어 수에 따라 역할 배
     switch (playerNum) {
         case 1:
             playerRoles = [
-                'doctor'
+                'citizen'
             ]
             return true;
         case 2:
@@ -469,6 +461,8 @@ function defaultRole(playerNum) { //현재 플레이어 수에 따라 역할 배
 
 $('#start').on("click", function () {
 
+
+    // 게임 시작
     socket.send("/room/" + roomNumber + "/start", {},
         JSON.stringify({
                 'msg': $(".chatsub").val(),
@@ -476,11 +470,44 @@ $('#start').on("click", function () {
                 'roomid': roomNumber
             }
         ))
-
-    //initGame();
-
 });
 
+function sendmsg() {
+    if (!socket.connected) {
+        client = Stomp.over(sock);
+        $(".chatsub").val('');
+        $(".chat_box").append("\n채팅 서버에 접속중입니다 잠시만 기다려주세요");
+        $(".chatsub").focus();
+    } else {
+        if ($("#inlineFormCustomSelectPref option:selected").val() == 0) { // 0이면 전체 1이면 팀채팅
+            socket.send("/room/" +roomNumber, {},
+                JSON.stringify({
+                        'msg': $(".chatsub").val(),
+                        'id': username,
+                        'roomid': roomNumber
+                    }
+                ));
+        } else {
+            if(player.group === 'mafia'){
+                socket.send("/room/" +roomNumber +"/mafia", {}, // maifa팀이라 가정
+                    JSON.stringify({
+                            'msg': $(".chatsub").val(),
+                            'id': username,
+                            'roomid': roomNumber
+                        }
+                    ));
+            }
+            else {
+                // 임시 확인용
+                alert("당신은 mafia가 아닙니다");
+            }
+
+        }
+
+        $(".chatsub").val('');
+        $(".chatsub").focus();
+    }
+}
 
 function initGame() { //게임 실행 함수
     $.ajax({
@@ -496,6 +523,9 @@ function initGame() { //게임 실행 함수
 
         }
     });
+    console.log("===========================");
+    console.log(playerNum);
+    console.log("===========================");
     if (playerNum >= 1) {
         // alert("게임실행 완료");
         $(".chat_box").append("\n게임이 시작되었습니다.");
@@ -518,12 +548,23 @@ function initGame() { //게임 실행 함수
                         userName = username;
                     }
                 }
-                console.log(player);
-                console.log(userName);
+            }
+        });
+        var sock = new SockJS("/chat"); // endpoint
+        var client = Stomp.over(sock);
+
+        client.connect({}, function () {
+            if (player.group === 'mafia') {
+                // 마피아 채팅 구독
+                client.subscribe('/topic/' +roomNumber+"/mafia", function (event) {
+                    $(".chat_box").append("\n" + JSON.parse(event.body).id + " >> " + JSON.parse(event.body).msg);
+                    $(".chat_box").scrollTop($(".chat_box").prop('scrollHeight'));
+                });
             }
         });
         $(".chat_box").append("\n당신의 직업은 " + player.jobName + " 입니다.");
         dayTime();
+
 
 
     } else {

@@ -40,6 +40,13 @@ public class ChattingController {
         return message;
     }
 
+    // 새로운 유저 입장
+    @MessageMapping("/room/{id}/new")
+    @SendTo("/topic/{id}/new")
+    public Message enter(Message message) throws Exception {
+        return message;
+    }
+
 }
 
 //    // 메세지 전송 경로
